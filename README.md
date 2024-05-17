@@ -194,3 +194,12 @@ $ cd ../..
 $ mkdir build && cd build && cmake ../ && make
 $ ./algo-compare
 ```
+### Comparison Result
+
+Runtime Comparison:
+
+![Runtime](./S5_algo_compare/imgs/runtime_compare.png)
+
+Approximation Rate Comparison:
+
+![Approximation](./S5_algo_compare/imgs/approximation_compare.png)
