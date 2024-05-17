@@ -122,9 +122,12 @@ every x and y value is in the range [−k, k]. For example, if k
 
 ## S4_find_vertex_cover:
 
+### How to run the program
+
 First, compile minisat SAT Solver:
 
 ```bash
+$ cd S4_find_verte_cover
 $ cd minisat && mkdir build && cd build && cmake ../ && make
 ```
 
@@ -141,3 +144,53 @@ E {<1,5>,<5,2>,<1,4>,<4,5>,<4,3>,<2,4>}
 
 The lines starting with V and E are the inputs to the program, and the last line is the output.
 Note that the minimum-sized vertex cover is not necessarily unique.
+
+## S5_algo_compare:
+
+The program has following characteristics:
+
+- It is multithreaded. Four threads are involved: one for I/O, and one each for the
+different approaches to solve the minimum vertex cover problem.
+
+- Three algorithms are involved to solve the MIN-VERTEX-COVER problem:
+
+  1. The approach derived from S4_find_vertex_cover, which used the SAT Solver to search the exact MIN-VERTEX-COVER. We will call this algorithm CNF-SAT-VC.
+
+  2. Pick a vertex of highest degree (most incident edges). Add it to your vertex cover and throw away all edges incident on that vertex. Repeat till no edges remain. We will call this algorithm APPROX-VC-1.
+
+  3. Pick an edge ⟨u, v⟩, and add both u and v to your vertex cover. Throw away all edges attached to u and v. Repeat till no edges remain. We will call this algorithm APPROX-VC-2.
+
+### Inputs
+For the input, your can refer the files under /input. 
+
+### Output
+Given a graph as input, the program should output the vertex cover computed by each approach
+in sorted order. That is, give the following input:
+
+V 5  
+E {<3,2>,<3,1>,<3,4>,<2,5>,<5,4>}  
+
+The output from your program should be:
+
+CNF-SAT-VC: 3,5  
+APPROX-VC-1: 3,5  
+APPROX-VC-2: 1,3,4,5
+
+That is, the name of the algorithm, followed by a colon ’:’, a single space, and then the computed
+result as a sorted sequence of vertices, separated by commas.
+
+### How to run the program
+
+First, compile minisat SAT Solver:
+
+```bash
+$ cd S5_algo_compare
+$ cd minisat && mkdir build && cd build && cmake ../ && make
+```
+
+### Sample Run
+```bash
+$ cd ../..
+$ mkdir build && cd build && cmake ../ && make
+$ ./algo-compare
+```
